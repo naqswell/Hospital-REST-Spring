@@ -11,4 +11,5 @@ interface PeopleDAO : CrudRepository<PeopleEntity, Int> {
 
     @Procedure("get_peoples_count_in_ward")
     fun getPeoplesCountInWard(model: String?): Int
+
 }

@@ -11,6 +11,8 @@ interface WardsService {
 
     fun createRequest(request: SaveWardsRequest)
 
+    fun selectWardsSortAllByDescAndMaxCountByAsc(): List<WardEntity>
+
     fun update(id: Int, request: SaveWardsRequest)
 
     fun delete(id: Int)

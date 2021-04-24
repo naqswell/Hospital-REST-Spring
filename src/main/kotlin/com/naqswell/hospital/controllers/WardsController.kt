@@ -20,6 +20,10 @@ class WardsController(private val wardsService: WardsService) {
         return wardsService.findById(id)
     }
 
+    @GetMapping("/selectWardsSortAllByDescAndMaxCountByAsc")
+    fun findWardsSortedAllByDescAndMaxCountByAsc(): List<WardEntity> =
+            wardsService.selectWardsSortAllByDescAndMaxCountByAsc()
+
     @PostMapping
     fun create(@Valid @RequestBody request: SaveWardsRequest): StatusResponse {
         wardsService.createRequest(request)

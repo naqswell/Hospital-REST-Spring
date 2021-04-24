@@ -31,8 +31,15 @@ class PeopleServiceImpl(
     override fun createRequest(request: SavePeopleRequest) {
         log.info("Create new person with name=${request.firstName}")
 
-        val peopleDiagnosisEntity: PeopleDiagnosisEntity = peopleDiagnosisDAO.findByIdOrNull(request.fkDiagnosis!!) ?: throw PeopleDiagnosisNotFoundException(request.fkDiagnosis)
-        val peopleWardEntity: PeopleWardEntity = peopleWardsDAO.findByIdOrNull(request.fkWard!!) ?: throw WardNotFoundException(request.fkWard)
+        var peopleDiagnosisEntity: PeopleDiagnosisEntity? = null
+        var peopleWardEntity: PeopleWardEntity? = null
+
+        if ((request.fkDiagnosis != null) and (request.fkWard != null)) {
+            peopleDiagnosisEntity = peopleDiagnosisDAO.findByIdOrNull(request.fkDiagnosis!!)
+                    ?: throw PeopleDiagnosisNotFoundException(request.fkDiagnosis)
+            peopleWardEntity = peopleWardsDAO.findByIdOrNull(request.fkWard!!)
+                    ?: throw WardNotFoundException(request.fkWard)
+        }
 
         peopleDAO.save(
                 PeopleEntity(
@@ -48,8 +55,10 @@ class PeopleServiceImpl(
     override fun update(id: Int, request: SavePeopleRequest) {
         log.info("Update person with id=$id")
 
-        val peopleDiagnosisEntity: PeopleDiagnosisEntity = peopleDiagnosisDAO.findByIdOrNull(request.fkDiagnosis!!) ?: throw PeopleDiagnosisNotFoundException(request.fkDiagnosis)
-        val peopleWardEntity: PeopleWardEntity = peopleWardsDAO.findByIdOrNull(request.fkWard!!) ?: throw PeopleWardNotFoundException(request.fkWard)
+        val peopleDiagnosisEntity: PeopleDiagnosisEntity = peopleDiagnosisDAO.findByIdOrNull(request.fkDiagnosis!!)
+                ?: throw PeopleDiagnosisNotFoundException(request.fkDiagnosis)
+        val peopleWardEntity: PeopleWardEntity = peopleWardsDAO.findByIdOrNull(request.fkWard!!)
+                ?: throw PeopleWardNotFoundException(request.fkWard)
         val people = peopleDAO.findByIdOrNull(id) ?: throw PeopleNotFoundException(id)
 
         people.firstName = request.firstName!!

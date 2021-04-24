@@ -31,6 +31,8 @@ class WardsServiceImpl(
         )
     }
 
+    override fun selectWardsSortAllByDescAndMaxCountByAsc(): List<WardEntity> = wardsDAO.selectWardsSortAllByDescAndMaxCountByAsc()
+
     override fun update(id: Int, request: SaveWardsRequest) {
         log.info("Update diagnosis with id=$id")
         val ward = wardsDAO.findByIdOrNull(id) ?: throw WardNotFoundException(id)

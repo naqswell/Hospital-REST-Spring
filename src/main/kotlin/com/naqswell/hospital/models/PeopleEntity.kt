@@ -21,11 +21,11 @@ class PeopleEntity(
 
         @ManyToOne
         @JoinColumn(name = "fk_diagnosis")
-        var fkDiagnosis: PeopleDiagnosisEntity,
+        var fkDiagnosis: PeopleDiagnosisEntity?,
 
         @ManyToOne
         @JoinColumn(name = "fk_ward")
-        var fkWard: PeopleWardEntity,
+        var fkWard: PeopleWardEntity?,
 
         ) : BaseEntity<Int>() {
 
