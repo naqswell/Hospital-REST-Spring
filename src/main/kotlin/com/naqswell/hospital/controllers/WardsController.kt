@@ -1,11 +1,11 @@
 package com.naqswell.hospital.controllers
 
-import com.naqswell.hospital.models.wards.WardEntity
+import com.naqswell.hospital.models.PeopleWardEntity
+import com.naqswell.hospital.models.WardEntity
 import com.naqswell.hospital.services.SaveWardsRequest
 import com.naqswell.hospital.services.WardsService
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.*
-import java.util.*
 import javax.validation.Valid
 
 @RestController
@@ -23,14 +23,6 @@ class WardsController(private val wardsService: WardsService) {
     @GetMapping("/selectWardsSortAllByDescAndMaxCountByAsc")
     fun findWardsSortedAllByDescAndMaxCountByAsc(): List<WardEntity> =
             wardsService.selectWardsSortAllByDescAndMaxCountByAsc()
-
-    @GetMapping("/getPeopleCountInWard/{ward_name}")
-    fun findPeoplesCountInWard(@PathVariable("ward_name") ward_name: String): Int =
-            wardsService.getPeoplesCountInWard(ward_name)
-
-    @GetMapping("/getAllWardsAndPeopleCount")
-    fun findWardsAndPeopleCount(): List<Objects> =
-            wardsService.getAllWardsAndPeopleCount()
 
     @PostMapping
     fun create(@Valid @RequestBody request: SaveWardsRequest): StatusResponse {

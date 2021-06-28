@@ -1,7 +1,5 @@
-package com.naqswell.hospital.models.wards
+package com.naqswell.hospital.models
 
-import com.naqswell.hospital.models.BaseWardEntity
-import com.naqswell.hospital.models.PeopleEntity
 import javax.persistence.*
 
 @Entity

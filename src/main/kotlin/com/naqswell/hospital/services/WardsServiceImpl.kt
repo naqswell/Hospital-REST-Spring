@@ -1,6 +1,6 @@
 package com.naqswell.hospital.services
 
-import com.naqswell.hospital.models.wards.WardEntity
+import com.naqswell.hospital.models.WardEntity
 import com.naqswell.hospital.repositories.PeopleWardsDAO
 import com.naqswell.hospital.repositories.WardsDAO
 import org.hibernate.annotations.common.util.impl.LoggerFactory
@@ -8,7 +8,6 @@ import org.springframework.data.repository.findByIdOrNull
 import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
 import org.springframework.web.bind.annotation.ResponseStatus
-import java.util.*
 
 @Service
 class WardsServiceImpl(
@@ -33,10 +32,6 @@ class WardsServiceImpl(
     }
 
     override fun selectWardsSortAllByDescAndMaxCountByAsc(): List<WardEntity> = wardsDAO.selectWardsSortAllByDescAndMaxCountByAsc()
-
-    override fun getPeoplesCountInWard(ward_name: String): Int = wardsDAO.getPeoplesCountInWard(ward_name)
-
-    override fun getAllWardsAndPeopleCount(): List<Objects> = wardsDAO.getAllWardsAndPeopleCount()
 
     override fun update(id: Int, request: SaveWardsRequest) {
         log.info("Update diagnosis with id=$id")

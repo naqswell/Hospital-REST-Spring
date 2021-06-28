@@ -15,6 +15,7 @@ interface PeopleService {
 
     fun delete(id: Int)
 
+    fun getPeoplesCountInWard(ward_name: String): Int
 }
 
 data class SavePeopleRequest(
