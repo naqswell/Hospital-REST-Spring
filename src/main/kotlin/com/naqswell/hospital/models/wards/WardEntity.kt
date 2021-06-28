@@ -4,7 +4,7 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "wards")
-class WardEntity(
+open class WardEntity(
 
         name: String?,
         maxCount: Int?,
