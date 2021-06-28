@@ -1,6 +1,6 @@
 package com.naqswell.hospital.controllers
 
-import com.naqswell.hospital.models.PeopleEntity
+import com.naqswell.hospital.models.people.PeopleEntity
 import com.naqswell.hospital.services.PeopleService
 import com.naqswell.hospital.services.SavePeopleRequestFkByEntities
 import com.naqswell.hospital.services.SavePeopleRequestFkByID
@@ -19,10 +19,6 @@ class PeopleController(private val peopleService: PeopleService) {
     fun findById(@PathVariable("id") id: Int): PeopleEntity {
         return peopleService.findById(id)
     }
-
-    @GetMapping("/getPeopleCountInWard/{ward_name}")
-    fun findPeoplesCountInWard(@PathVariable("ward_name") ward_name: String): Int =
-            peopleService.getPeoplesCountInWard(ward_name)
 
 //    @PostMapping
 //    fun create(@Valid @RequestBody requestFkByID: SavePeopleRequestFkByID): StatusResponse {

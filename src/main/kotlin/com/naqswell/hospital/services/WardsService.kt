@@ -1,6 +1,6 @@
 package com.naqswell.hospital.services
 
-import com.naqswell.hospital.models.PeopleEntity
+import com.naqswell.hospital.models.people.PeopleEntity
 import com.naqswell.hospital.models.wards.WardEntity
 import org.jetbrains.annotations.NotNull
 
@@ -11,7 +11,9 @@ interface WardsService {
 
     fun createRequest(request: SaveWardsRequest)
 
-    fun selectWardsSortAllByDescAndMaxCountByAsc(): List<WardEntity>
+    fun getWardsSortAllByDescAndMaxCountByAsc(): List<WardEntity>
+
+    fun getPeoplesCountInWard(ward_name: String): Int
 
     fun update(id: Int, request: SaveWardsRequest)
 

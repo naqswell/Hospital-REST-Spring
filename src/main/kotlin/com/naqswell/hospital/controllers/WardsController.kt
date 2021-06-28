@@ -21,7 +21,11 @@ class WardsController(private val wardsService: WardsService) {
 
     @GetMapping("/selectWardsSortAllByDescAndMaxCountByAsc")
     fun findWardsSortedAllByDescAndMaxCountByAsc(): List<WardEntity> =
-            wardsService.selectWardsSortAllByDescAndMaxCountByAsc()
+            wardsService.getWardsSortAllByDescAndMaxCountByAsc()
+
+    @GetMapping("/getPeopleCountInWard/{ward_name}")
+    fun findPeoplesCountInWard(@PathVariable("ward_name") ward_name: String): Int =
+            wardsService.getPeoplesCountInWard(ward_name)
 
     @PostMapping
     fun create(@Valid @RequestBody request: SaveWardsRequest): StatusResponse {

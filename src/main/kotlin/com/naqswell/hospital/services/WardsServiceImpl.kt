@@ -31,7 +31,9 @@ class WardsServiceImpl(
         )
     }
 
-    override fun selectWardsSortAllByDescAndMaxCountByAsc(): List<WardEntity> = wardsDAO.selectWardsSortAllByDescAndMaxCountByAsc()
+    override fun getWardsSortAllByDescAndMaxCountByAsc(): List<WardEntity> = wardsDAO.getWardsSortAllByDescAndMaxCountByAsc()
+
+    override fun getPeoplesCountInWard(ward_name: String): Int = wardsDAO.getPeoplesCountInWard(ward_name)
 
     override fun update(id: Int, request: SaveWardsRequest) {
         log.info("Update diagnosis with id=$id")

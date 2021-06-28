@@ -1,8 +1,8 @@
 package com.naqswell.hospital.services
 
-import com.naqswell.hospital.models.PeopleDiagnosisEntity
-import com.naqswell.hospital.models.PeopleEntity
-import com.naqswell.hospital.models.PeopleWardEntity
+import com.naqswell.hospital.models.people.PeopleDiagnosisEntity
+import com.naqswell.hospital.models.people.PeopleEntity
+import com.naqswell.hospital.models.people.PeopleWardEntity
 import com.naqswell.hospital.repositories.PeopleDAO
 import com.naqswell.hospital.repositories.PeopleDiagnosisDAO
 import com.naqswell.hospital.repositories.PeopleWardsDAO
@@ -87,8 +87,6 @@ class PeopleServiceImpl(
         val people = peopleDAO.findByIdOrNull(id) ?: throw PeopleNotFoundException(id)
         peopleDAO.delete(people)
     }
-
-    override fun getPeoplesCountInWard(ward_name: String): Int = peopleDAO.getPeoplesCountInWard(ward_name)
 
     companion object {
         private val log = LoggerFactory.logger(PeopleServiceImpl::class.java)

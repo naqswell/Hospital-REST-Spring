@@ -1,6 +1,6 @@
 package com.naqswell.hospital.controllers
 
-import com.naqswell.hospital.models.DiagnosisEntity
+import com.naqswell.hospital.models.diagnosis.DiagnosisEntity
 import com.naqswell.hospital.services.DiagnosisService
 import com.naqswell.hospital.services.SaveDiagnosisRequest
 import org.springframework.http.MediaType

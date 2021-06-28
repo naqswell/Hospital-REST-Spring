@@ -1,14 +1,15 @@
-package com.naqswell.hospital.models
+package com.naqswell.hospital.models.people
 
+import com.naqswell.hospital.models.BaseEntity
 import javax.persistence.*
 
 @Entity
 @Table(name = "people")
 class PeopleEntity(
 
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        override val id: Int = 0,
+//        @Id
+//        @GeneratedValue(strategy = GenerationType.IDENTITY)
+//        override val id: Int = 0,
 
         @Column(name = "first_name")
         var firstName: String,
@@ -31,6 +32,6 @@ class PeopleEntity(
 
     fun copy(): PeopleEntity =
             PeopleEntity(
-                    id, firstName, lastName, patherName, fkDiagnosis, fkWard
+                    firstName, lastName, patherName, fkDiagnosis, fkWard
             )
 }

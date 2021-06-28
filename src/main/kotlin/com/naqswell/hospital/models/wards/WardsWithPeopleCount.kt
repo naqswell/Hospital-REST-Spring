@@ -1,6 +1,6 @@
 //package com.naqswell.hospital.models.wards
 //
-//import com.naqswell.hospital.models.PeopleEntity
+//import com.naqswell.hospital.models.people.PeopleEntity
 //import javax.persistence.Entity
 //
 //@Entity

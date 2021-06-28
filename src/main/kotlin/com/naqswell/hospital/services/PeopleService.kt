@@ -1,8 +1,8 @@
 package com.naqswell.hospital.services
 
-import com.naqswell.hospital.models.PeopleDiagnosisEntity
-import com.naqswell.hospital.models.PeopleEntity
-import com.naqswell.hospital.models.PeopleWardEntity
+import com.naqswell.hospital.models.people.PeopleDiagnosisEntity
+import com.naqswell.hospital.models.people.PeopleEntity
+import com.naqswell.hospital.models.people.PeopleWardEntity
 import org.jetbrains.annotations.NotNull
 
 
@@ -18,8 +18,6 @@ interface PeopleService {
     fun update(id: Int, requestFkByID: SavePeopleRequestFkByID)
 
     fun delete(id: Int)
-
-    fun getPeoplesCountInWard(ward_name: String): Int
 }
 
 data class SavePeopleRequestFkByID(

@@ -1,7 +1,7 @@
 package com.naqswell.hospital.services
 
-import com.naqswell.hospital.models.DiagnosisEntity
-import com.naqswell.hospital.models.PeopleEntity
+import com.naqswell.hospital.models.diagnosis.DiagnosisEntity
+import com.naqswell.hospital.models.people.PeopleEntity
 import org.jetbrains.annotations.NotNull
 
 interface DiagnosisService {

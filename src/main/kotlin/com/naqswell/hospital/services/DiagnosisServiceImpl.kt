@@ -1,6 +1,6 @@
 package com.naqswell.hospital.services
 
-import com.naqswell.hospital.models.DiagnosisEntity
+import com.naqswell.hospital.models.diagnosis.DiagnosisEntity
 import com.naqswell.hospital.repositories.DiagnosisDAO
 import org.hibernate.annotations.common.util.impl.LoggerFactory
 import org.springframework.data.repository.findByIdOrNull

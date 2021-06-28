@@ -1,5 +1,6 @@
-package com.naqswell.hospital.models
+package com.naqswell.hospital.models.diagnosis
 
+import com.naqswell.hospital.models.people.PeopleEntity
 import javax.persistence.*
 
 @Entity
