@@ -19,9 +19,7 @@ class PeopleController(private val peopleService: PeopleService) {
         return peopleService.findById(id)
     }
 
-    @GetMapping("/getPeopleCountInWard/{ward_name}")
-    fun findPeoplesCountInWard(@PathVariable("ward_name") ward_name: String): Int =
-            peopleService.getPeoplesCountInWard(ward_name)
+
 
     @PostMapping
     fun create(@Valid @RequestBody request: SavePeopleRequest): StatusResponse {

@@ -1,8 +1,9 @@
 package com.naqswell.hospital.services
 
 import com.naqswell.hospital.models.PeopleEntity
-import com.naqswell.hospital.models.WardEntity
+import com.naqswell.hospital.models.wards.WardEntity
 import org.jetbrains.annotations.NotNull
+import java.util.*
 
 interface WardsService {
     fun findAll(): List<WardEntity>
@@ -16,6 +17,10 @@ interface WardsService {
     fun update(id: Int, request: SaveWardsRequest)
 
     fun delete(id: Int)
+
+    fun getAllWardsAndPeopleCount(): List<Objects>
+
+    fun getPeoplesCountInWard(ward_name: String): Int
 }
 
 //Эта сущность представляет собой тело json-запроса - data class с тремя полями и валидацией

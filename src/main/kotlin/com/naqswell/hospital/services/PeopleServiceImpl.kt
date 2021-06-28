@@ -76,8 +76,6 @@ class PeopleServiceImpl(
         peopleDAO.delete(people)
     }
 
-    override fun getPeoplesCountInWard(ward_name: String): Int = peopleDAO.getPeoplesCountInWard(ward_name)
-
     companion object {
         private val log = LoggerFactory.logger(PeopleServiceImpl::class.java)
     }
