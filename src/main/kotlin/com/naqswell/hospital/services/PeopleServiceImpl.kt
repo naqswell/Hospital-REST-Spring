@@ -28,42 +28,54 @@ class PeopleServiceImpl(
         return peopleDAO.findByIdOrNull(id) ?: throw PeopleNotFoundException(id)
     }
 
-    override fun createRequest(request: SavePeopleRequest) {
-        log.info("Create new person with name=${request.firstName}")
+    override fun createRequest(requestFkByID: SavePeopleRequestFkByID) {
+        log.info("Create new person with name=${requestFkByID.firstName}")
 
         var peopleDiagnosisEntity: PeopleDiagnosisEntity? = null
         var peopleWardEntity: PeopleWardEntity? = null
 
-        if ((request.fkDiagnosis != null) and (request.fkWard != null)) {
-            peopleDiagnosisEntity = peopleDiagnosisDAO.findByIdOrNull(request.fkDiagnosis!!)
-                    ?: throw PeopleDiagnosisNotFoundException(request.fkDiagnosis)
-            peopleWardEntity = peopleWardsDAO.findByIdOrNull(request.fkWard!!)
-                    ?: throw WardNotFoundException(request.fkWard)
+        if ((requestFkByID.fkDiagnosis != null) and (requestFkByID.fkWard != null)) {
+            peopleDiagnosisEntity = peopleDiagnosisDAO.findByIdOrNull(requestFkByID.fkDiagnosis!!)
+                    ?: throw PeopleDiagnosisNotFoundException(requestFkByID.fkDiagnosis)
+            peopleWardEntity = peopleWardsDAO.findByIdOrNull(requestFkByID.fkWard!!)
+                    ?: throw WardNotFoundException(requestFkByID.fkWard)
         }
 
         peopleDAO.save(
                 PeopleEntity(
-                        firstName = request.firstName!!,
-                        lastName = request.lastName!!,
-                        patherName = request.patherName!!,
+                        firstName = requestFkByID.firstName!!,
+                        lastName = requestFkByID.lastName!!,
+                        patherName = requestFkByID.patherName!!,
                         fkDiagnosis = peopleDiagnosisEntity,
                         fkWard = peopleWardEntity
                 )
         )
     }
 
-    override fun update(id: Int, request: SavePeopleRequest) {
+    override fun createRequest(requestFkByEntities: SavePeopleRequestFkByEntities) {
+        log.info("Create new person with name=${requestFkByEntities.firstName}")
+        peopleDAO.save(PeopleEntity(
+                firstName = requestFkByEntities.firstName!!,
+                lastName = requestFkByEntities.lastName!!,
+                patherName = requestFkByEntities.patherName!!,
+                fkDiagnosis = requestFkByEntities.fkDiagnosis!!,
+                fkWard = requestFkByEntities.fkWard!!
+        ))
+
+    }
+
+    override fun update(id: Int, requestFkByID: SavePeopleRequestFkByID) {
         log.info("Update person with id=$id")
 
-        val peopleDiagnosisEntity: PeopleDiagnosisEntity = peopleDiagnosisDAO.findByIdOrNull(request.fkDiagnosis!!)
-                ?: throw PeopleDiagnosisNotFoundException(request.fkDiagnosis)
-        val peopleWardEntity: PeopleWardEntity = peopleWardsDAO.findByIdOrNull(request.fkWard!!)
-                ?: throw PeopleWardNotFoundException(request.fkWard)
+        val peopleDiagnosisEntity: PeopleDiagnosisEntity = peopleDiagnosisDAO.findByIdOrNull(requestFkByID.fkDiagnosis!!)
+                ?: throw PeopleDiagnosisNotFoundException(requestFkByID.fkDiagnosis)
+        val peopleWardEntity: PeopleWardEntity = peopleWardsDAO.findByIdOrNull(requestFkByID.fkWard!!)
+                ?: throw PeopleWardNotFoundException(requestFkByID.fkWard)
         val people = peopleDAO.findByIdOrNull(id) ?: throw PeopleNotFoundException(id)
 
-        people.firstName = request.firstName!!
-        people.lastName = request.lastName!!
-        people.patherName = request.patherName!!
+        people.firstName = requestFkByID.firstName!!
+        people.lastName = requestFkByID.lastName!!
+        people.patherName = requestFkByID.patherName!!
         people.fkDiagnosis = peopleDiagnosisEntity
         people.fkWard = peopleWardEntity
 

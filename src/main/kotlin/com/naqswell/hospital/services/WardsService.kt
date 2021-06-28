@@ -1,7 +1,7 @@
 package com.naqswell.hospital.services
 
 import com.naqswell.hospital.models.PeopleEntity
-import com.naqswell.hospital.models.WardEntity
+import com.naqswell.hospital.models.wards.WardEntity
 import org.jetbrains.annotations.NotNull
 
 interface WardsService {

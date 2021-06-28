@@ -1,6 +1,6 @@
 package com.naqswell.hospital.services
 
-import com.naqswell.hospital.models.WardEntity
+import com.naqswell.hospital.models.wards.WardEntity
 import com.naqswell.hospital.repositories.PeopleWardsDAO
 import com.naqswell.hospital.repositories.WardsDAO
 import org.hibernate.annotations.common.util.impl.LoggerFactory

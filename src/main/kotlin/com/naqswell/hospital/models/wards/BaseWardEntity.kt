@@ -1,5 +1,6 @@
-package com.naqswell.hospital.models
+package com.naqswell.hospital.models.wards
 
+import com.naqswell.hospital.models.BaseEntity
 import javax.persistence.*
 
 @MappedSuperclass

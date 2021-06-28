@@ -2,7 +2,8 @@ package com.naqswell.hospital.controllers
 
 import com.naqswell.hospital.models.PeopleEntity
 import com.naqswell.hospital.services.PeopleService
-import com.naqswell.hospital.services.SavePeopleRequest
+import com.naqswell.hospital.services.SavePeopleRequestFkByEntities
+import com.naqswell.hospital.services.SavePeopleRequestFkByID
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.*
 import javax.validation.Valid
@@ -23,18 +24,31 @@ class PeopleController(private val peopleService: PeopleService) {
     fun findPeoplesCountInWard(@PathVariable("ward_name") ward_name: String): Int =
             peopleService.getPeoplesCountInWard(ward_name)
 
-    @PostMapping
-    fun create(@Valid @RequestBody request: SavePeopleRequest): StatusResponse {
-        peopleService.createRequest(request)
-        return StatusResponse("Created")
+//    @PostMapping
+//    fun create(@Valid @RequestBody requestFkByID: SavePeopleRequestFkByID): StatusResponse {
+//        peopleService.createRequest(requestFkByID)
+//        return StatusResponse("Created requestFkByID")
+//    }
+
+    @PostMapping("/byId")
+    fun create(@Valid @RequestBody requestFkByID: SavePeopleRequestFkByID): StatusResponse {
+        peopleService.createRequest(requestFkByID)
+        return StatusResponse("Created requestFkByID")
+    }
+
+
+    @PostMapping("/byEntities")
+    fun create(@Valid @RequestBody requestFkByEntities: SavePeopleRequestFkByEntities): StatusResponse {
+        peopleService.createRequest(requestFkByEntities)
+        return StatusResponse("Created requestFkByEntities")
     }
 
     @PutMapping("/{id}")
     fun update(
             @PathVariable("id") id: Int,
-            @Valid @RequestBody request: SavePeopleRequest
+            @Valid @RequestBody requestFkByID: SavePeopleRequestFkByID
     ): StatusResponse {
-        peopleService.update(id, request)
+        peopleService.update(id, requestFkByID)
         return StatusResponse("Updated")
     }
 

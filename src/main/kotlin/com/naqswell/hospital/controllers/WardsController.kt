@@ -1,7 +1,6 @@
 package com.naqswell.hospital.controllers
 
-import com.naqswell.hospital.models.PeopleWardEntity
-import com.naqswell.hospital.models.WardEntity
+import com.naqswell.hospital.models.wards.WardEntity
 import com.naqswell.hospital.services.SaveWardsRequest
 import com.naqswell.hospital.services.WardsService
 import org.springframework.http.MediaType
