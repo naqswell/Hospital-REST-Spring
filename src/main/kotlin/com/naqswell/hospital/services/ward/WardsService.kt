@@ -1,17 +1,20 @@
-package com.naqswell.hospital.services
+package com.naqswell.hospital.services.ward
 
-import com.naqswell.hospital.models.diagnosis.DiagnosisEntity
-import com.naqswell.hospital.models.people.PeopleEntity
+import com.naqswell.hospital.models.wards.WardEntity
 import org.jetbrains.annotations.NotNull
 
-interface DiagnosisService {
-    fun findAll(): List<DiagnosisEntity>
+interface WardsService {
+    fun findAll(): List<WardEntity>
 
-    fun findById(id: Int): DiagnosisEntity
+    fun findById(id: Int): WardEntity
 
-    fun createRequest(request: SaveDiagnosisRequest)
+    fun createRequest(request: SaveWardsRequest)
 
-    fun update(id: Int, request: SaveDiagnosisRequest)
+    fun getWardsSortAllByDescAndMaxCountByAsc(): List<WardEntity>
+
+    fun getPeoplesCountInWard(ward_name: String): Int
+
+    fun update(id: Int, request: SaveWardsRequest)
 
     fun delete(id: Int)
 }
@@ -23,10 +26,13 @@ interface DiagnosisService {
 //Также обратите внимание, что мы используем nullable типы данных с аннотацией @NotNull.
 // Это сделано для корректной работы валидации в случае отсутствия параметра.
 // Ведь если такое поле не придёт в запросе, то в случае с not-null типом мы не сможем десериализовать запрос.
-data class SaveDiagnosisRequest(
+data class SaveWardsRequest(
         @get:NotNull
         val name: String?,
 
         @get:NotNull
-        val peoples: MutableList<PeopleEntity>?
+        val maxCount: Int?,
+
+//        @get:NotNull
+//        val peoples: MutableList<PeopleEntity>?
 )

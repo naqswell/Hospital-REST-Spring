@@ -1,7 +1,11 @@
 package com.naqswell.hospital.models.diagnosis
 
 import com.naqswell.hospital.models.people.PeopleEntity
-import javax.persistence.*
+import org.hibernate.annotations.JoinFormula
+import javax.persistence.Entity
+import javax.persistence.FetchType
+import javax.persistence.OneToMany
+import javax.persistence.Table
 
 @Entity
 @Table(name = "diagnosis")
@@ -20,7 +24,8 @@ class DiagnosisEntity(
 //                загруженные объекты, даже если нужен только один объект из десятка
                 orphanRemoval = true
         )
-        var peoples: MutableList<PeopleEntity> = mutableListOf()
+        var peoples: MutableList<PeopleEntity> = mutableListOf(),
+
 ) : BaseDiagnosisEntity(name) {
 
     fun addPeoples(block: DiagnosisEntity.() -> PeopleEntity) {

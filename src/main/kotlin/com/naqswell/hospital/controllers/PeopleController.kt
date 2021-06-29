@@ -1,9 +1,9 @@
 package com.naqswell.hospital.controllers
 
 import com.naqswell.hospital.models.people.PeopleEntity
-import com.naqswell.hospital.services.PeopleService
-import com.naqswell.hospital.services.SavePeopleRequestFkByEntities
-import com.naqswell.hospital.services.SavePeopleRequestFkByID
+import com.naqswell.hospital.services.people.PeopleService
+import com.naqswell.hospital.services.people.SavePeopleRequestFkByEntities
+import com.naqswell.hospital.services.people.SavePeopleRequestFkByID
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.*
 import javax.validation.Valid
@@ -20,39 +20,42 @@ class PeopleController(private val peopleService: PeopleService) {
         return peopleService.findById(id)
     }
 
-//    @PostMapping
-//    fun create(@Valid @RequestBody requestFkByID: SavePeopleRequestFkByID): StatusResponse {
-//        peopleService.createRequest(requestFkByID)
-//        return StatusResponse("Created requestFkByID")
-//    }
-
-    @PostMapping("/byId")
+    @PostMapping("/create/byId")
     fun create(@Valid @RequestBody requestFkByID: SavePeopleRequestFkByID): StatusResponse {
         peopleService.createRequest(requestFkByID)
-        return StatusResponse("Created requestFkByID")
+        return StatusResponse("People created requestFkByID")
     }
 
 
-    @PostMapping("/byEntities")
+    @PostMapping("/create/byEntities")
     fun create(@Valid @RequestBody requestFkByEntities: SavePeopleRequestFkByEntities): StatusResponse {
         peopleService.createRequest(requestFkByEntities)
-        return StatusResponse("Created requestFkByEntities")
+        return StatusResponse("People created requestFkByEntities")
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("update/byId/{id}")
     fun update(
             @PathVariable("id") id: Int,
             @Valid @RequestBody requestFkByID: SavePeopleRequestFkByID
     ): StatusResponse {
         peopleService.update(id, requestFkByID)
-        return StatusResponse("Updated")
+        return StatusResponse("People with id=$id updated by id")
     }
 
-    @DeleteMapping("/{id}")
+    @PutMapping("update/byEntities/{id}")
+    fun update(
+            @PathVariable("id") id: Int,
+            @Valid @RequestBody requestFkByEntities: SavePeopleRequestFkByEntities
+    ): StatusResponse {
+        peopleService.update(id, requestFkByEntities)
+        return StatusResponse("People with id=$id updated by entities")
+    }
+
+    @DeleteMapping("/delete/{id}")
     fun delete(@PathVariable("id") id: Int
     ): StatusResponse {
         peopleService.delete(id)
-        return StatusResponse(("Deleted"))
+        return StatusResponse(("People with id=$id deleted"))
     }
 
 }

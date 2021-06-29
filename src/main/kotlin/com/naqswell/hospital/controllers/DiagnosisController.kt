@@ -1,8 +1,8 @@
 package com.naqswell.hospital.controllers
 
 import com.naqswell.hospital.models.diagnosis.DiagnosisEntity
-import com.naqswell.hospital.services.DiagnosisService
-import com.naqswell.hospital.services.SaveDiagnosisRequest
+import com.naqswell.hospital.services.diagnosis.DiagnosisService
+import com.naqswell.hospital.services.diagnosis.SaveDiagnosisRequest
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.*
 import javax.validation.Valid
@@ -19,26 +19,25 @@ class DiagnosisController(private val diagnosisService: DiagnosisService) {
         return diagnosisService.findById(id)
     }
 
-    @PostMapping
+    @PostMapping("/create")
     fun create(@Valid @RequestBody request: SaveDiagnosisRequest): StatusResponse {
         diagnosisService.createRequest(request)
-        return StatusResponse("Created")
+        return StatusResponse("Diagnosis created")
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     fun update(
             @PathVariable("id") id: Int,
             @Valid @RequestBody request: SaveDiagnosisRequest
     ): StatusResponse {
         diagnosisService.update(id, request)
-        return StatusResponse("Updated")
+        return StatusResponse("Diagnosis with id=$id updated")
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     fun delete(@PathVariable("id") id: Int
     ): StatusResponse {
         diagnosisService.delete(id)
-        return StatusResponse(("Deleted"))
+        return StatusResponse(("Diagnosis with id=$id deleted"))
     }
-
 }

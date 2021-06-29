@@ -1,4 +1,4 @@
-package com.naqswell.hospital.services
+package com.naqswell.hospital.services.diagnosis
 
 import com.naqswell.hospital.models.diagnosis.DiagnosisEntity
 import com.naqswell.hospital.repositories.DiagnosisDAO
@@ -26,10 +26,7 @@ class DiagnosisServiceImpl(
     override fun createRequest(request: SaveDiagnosisRequest) {
         log.info("Create new diagnosis with name=${request.name}")
         diagnosisDAO.save(
-                DiagnosisEntity(
-                        name = request.name!!,
-                        peoples = request.peoples!!
-                )
+                DiagnosisEntity(request.name)
         )
     }
 
@@ -37,7 +34,6 @@ class DiagnosisServiceImpl(
         log.info("Update diagnosis with id=$id")
         val diagnosis = diagnosisDAO.findByIdOrNull(id) ?: throw DiagnosisNotFoundException(id)
         diagnosis.name = request.name!!
-        diagnosis.peoples = request.peoples!!
         diagnosisDAO.save(diagnosis)
     }
 

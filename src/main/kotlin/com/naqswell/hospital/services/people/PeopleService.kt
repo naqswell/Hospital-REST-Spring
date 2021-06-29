@@ -1,4 +1,4 @@
-package com.naqswell.hospital.services
+package com.naqswell.hospital.services.people
 
 import com.naqswell.hospital.models.people.PeopleDiagnosisEntity
 import com.naqswell.hospital.models.people.PeopleEntity
@@ -16,6 +16,8 @@ interface PeopleService {
     fun createRequest(requestFkByEntities: SavePeopleRequestFkByEntities)
 
     fun update(id: Int, requestFkByID: SavePeopleRequestFkByID)
+
+    fun update(id: Int, requestFkByEntities: SavePeopleRequestFkByEntities)
 
     fun delete(id: Int)
 }

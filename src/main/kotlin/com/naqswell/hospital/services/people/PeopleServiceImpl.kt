@@ -1,4 +1,4 @@
-package com.naqswell.hospital.services
+package com.naqswell.hospital.services.people
 
 import com.naqswell.hospital.models.people.PeopleDiagnosisEntity
 import com.naqswell.hospital.models.people.PeopleEntity
@@ -6,6 +6,7 @@ import com.naqswell.hospital.models.people.PeopleWardEntity
 import com.naqswell.hospital.repositories.PeopleDAO
 import com.naqswell.hospital.repositories.PeopleDiagnosisDAO
 import com.naqswell.hospital.repositories.PeopleWardsDAO
+import com.naqswell.hospital.services.ward.WardNotFoundException
 import org.hibernate.annotations.common.util.impl.LoggerFactory
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.http.HttpStatus
@@ -65,7 +66,7 @@ class PeopleServiceImpl(
     }
 
     override fun update(id: Int, requestFkByID: SavePeopleRequestFkByID) {
-        log.info("Update person with id=$id")
+        log.info("Update person with id=$id by id")
 
         val peopleDiagnosisEntity: PeopleDiagnosisEntity = peopleDiagnosisDAO.findByIdOrNull(requestFkByID.fkDiagnosis!!)
                 ?: throw PeopleDiagnosisNotFoundException(requestFkByID.fkDiagnosis)
@@ -78,6 +79,20 @@ class PeopleServiceImpl(
         people.patherName = requestFkByID.patherName!!
         people.fkDiagnosis = peopleDiagnosisEntity
         people.fkWard = peopleWardEntity
+
+        peopleDAO.save(people)
+    }
+
+    override fun update(id: Int, requestFkByEntities: SavePeopleRequestFkByEntities) {
+        log.info("Update person with id=$id by entities")
+
+        val people = peopleDAO.findByIdOrNull(id) ?: throw PeopleNotFoundException(id)
+
+        people.firstName = requestFkByEntities.firstName!!
+        people.lastName = requestFkByEntities.lastName!!
+        people.patherName = requestFkByEntities.patherName!!
+        people.fkDiagnosis = requestFkByEntities.fkDiagnosis
+        people.fkWard = requestFkByEntities.fkWard
 
         peopleDAO.save(people)
     }

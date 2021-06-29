@@ -1,4 +1,4 @@
-package com.naqswell.hospital.services
+package com.naqswell.hospital.services.ward
 
 import com.naqswell.hospital.models.wards.WardEntity
 import com.naqswell.hospital.repositories.PeopleWardsDAO
@@ -38,8 +38,8 @@ class WardsServiceImpl(
     override fun update(id: Int, request: SaveWardsRequest) {
         log.info("Update diagnosis with id=$id")
         val ward = wardsDAO.findByIdOrNull(id) ?: throw WardNotFoundException(id)
+        ward.name = request.name!!
         ward.maxCount = request.maxCount!!
-        ward.peoples = request.peoples!!
         wardsDAO.save(ward)
     }
 

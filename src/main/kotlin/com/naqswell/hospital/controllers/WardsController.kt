@@ -1,8 +1,8 @@
 package com.naqswell.hospital.controllers
 
 import com.naqswell.hospital.models.wards.WardEntity
-import com.naqswell.hospital.services.SaveWardsRequest
-import com.naqswell.hospital.services.WardsService
+import com.naqswell.hospital.services.ward.SaveWardsRequest
+import com.naqswell.hospital.services.ward.WardsService
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.*
 import javax.validation.Valid
@@ -27,26 +27,27 @@ class WardsController(private val wardsService: WardsService) {
     fun findPeoplesCountInWard(@PathVariable("ward_name") ward_name: String): Int =
             wardsService.getPeoplesCountInWard(ward_name)
 
-    @PostMapping
+
+    @PostMapping("/create")
     fun create(@Valid @RequestBody request: SaveWardsRequest): StatusResponse {
         wardsService.createRequest(request)
-        return StatusResponse("Created")
+        return StatusResponse("Ward created")
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     fun update(
             @PathVariable("id") id: Int,
             @Valid @RequestBody request: SaveWardsRequest
     ): StatusResponse {
         wardsService.update(id, request)
-        return StatusResponse("Updated")
+        return StatusResponse("Ward with id=$id updated")
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     fun delete(@PathVariable("id") id: Int
     ): StatusResponse {
         wardsService.delete(id)
-        return StatusResponse(("Deleted"))
+        return StatusResponse(("Ward with id=$id deleted"))
     }
 
 }
