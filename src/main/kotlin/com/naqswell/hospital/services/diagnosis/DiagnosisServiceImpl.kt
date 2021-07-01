@@ -43,6 +43,10 @@ class DiagnosisServiceImpl(
         diagnosisDAO.delete(diagnosis)
     }
 
+    override fun deleteTopDiagnosis() {
+        log.info("Delete top diagnosis")
+        diagnosisDAO.deleteTopDiagnosis()    }
+
     companion object {
         private val log = LoggerFactory.logger(DiagnosisServiceImpl::class.java)
     }

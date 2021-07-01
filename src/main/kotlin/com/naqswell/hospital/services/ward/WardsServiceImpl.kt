@@ -49,6 +49,13 @@ class WardsServiceImpl(
         peopleWardsDAO.delete(wards)
     }
 
+    override fun moveFromWardToWard(id1: Int, id2: Int) {
+        wardsDAO.moveFromWardToWard(id1, id2)
+    }
+
+    override fun getWardsWhenTakenPlacesFewerThenAvgD1D2(id1: Int, id2: Int): List<WardEntity> =
+            wardsDAO.getWardsWhenTakenPlacesFewerThenAvgD1D2(id1, id2)
+
     companion object {
         private val log = LoggerFactory.logger(WardsServiceImpl::class.java)
     }

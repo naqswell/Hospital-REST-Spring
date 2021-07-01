@@ -50,4 +50,14 @@ class WardsController(private val wardsService: WardsService) {
         return StatusResponse(("Ward with id=$id deleted"))
     }
 
+    @GetMapping("/moveFromWardToWard/{id1}/{id2}")
+    fun moveFromWardToWard(@PathVariable("id1") id1: Int, @PathVariable("id2") id2: Int) {
+        wardsService.moveFromWardToWard(id1, id2)
+    }
+
+    @GetMapping("/getWardsWhenTakenPlacesFewerThenAvgD1D2/{id1}/{id2}")
+    fun getWardsWhenTakenPlacesFewerThenAvgD1D2(@PathVariable("id1") id1: Int,
+                                                @PathVariable("id2") id2: Int): List<WardEntity> {
+        return wardsService.getWardsWhenTakenPlacesFewerThenAvgD1D2(id1, id2)
+    }
 }

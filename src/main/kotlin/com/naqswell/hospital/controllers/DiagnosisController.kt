@@ -40,4 +40,10 @@ class DiagnosisController(private val diagnosisService: DiagnosisService) {
         diagnosisService.delete(id)
         return StatusResponse(("Diagnosis with id=$id deleted"))
     }
+
+    @DeleteMapping("/deleteTopDiagnosis")
+    fun deleteTopDiagnosis(): StatusResponse {
+        diagnosisService.deleteTopDiagnosis()
+        return StatusResponse(("Top diagnosis deleted"))
+    }
 }

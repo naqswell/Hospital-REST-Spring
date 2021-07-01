@@ -14,6 +14,8 @@ interface DiagnosisService {
     fun update(id: Int, request: SaveDiagnosisRequest)
 
     fun delete(id: Int)
+
+    fun deleteTopDiagnosis()
 }
 
 //Эта сущность представляет собой тело json-запроса - data class с тремя полями и валидацией

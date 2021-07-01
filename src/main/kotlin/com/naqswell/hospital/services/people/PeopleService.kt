@@ -20,6 +20,8 @@ interface PeopleService {
     fun update(id: Int, requestFkByEntities: SavePeopleRequestFkByEntities)
 
     fun delete(id: Int)
+
+    fun deletePeopleWithUniqueDiagnosis()
 }
 
 data class SavePeopleRequestFkByID(

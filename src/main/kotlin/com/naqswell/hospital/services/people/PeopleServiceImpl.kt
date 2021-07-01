@@ -103,6 +103,11 @@ class PeopleServiceImpl(
         peopleDAO.delete(people)
     }
 
+    override fun deletePeopleWithUniqueDiagnosis() {
+        log.info("Delete person with unique diagnosis")
+        peopleDAO.deletePeopleWithUniqueDiagnosis()
+    }
+
     companion object {
         private val log = LoggerFactory.logger(PeopleServiceImpl::class.java)
     }

@@ -58,4 +58,10 @@ class PeopleController(private val peopleService: PeopleService) {
         return StatusResponse(("People with id=$id deleted"))
     }
 
+    @DeleteMapping("/deletePeopleWithUniqueDiagnosis")
+    fun deletePeopleWithUniqueDiagnosis(): StatusResponse {
+        peopleService.deletePeopleWithUniqueDiagnosis()
+        return StatusResponse(("People with unique diagnosis deleted"))
+    }
+
 }
