@@ -56,6 +56,10 @@ class WardsServiceImpl(
     override fun getWardsWhenTakenPlacesFewerThenAvgD1D2(id1: Int, id2: Int): List<WardEntity> =
             wardsDAO.getWardsWhenTakenPlacesFewerThenAvgD1D2(id1, id2)
 
+    override fun getWardsMetrics(id: Int): List<Int?> {
+        return wardsDAO.getWardsMetrics(id)
+    }
+
     companion object {
         private val log = LoggerFactory.logger(WardsServiceImpl::class.java)
     }

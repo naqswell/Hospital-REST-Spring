@@ -30,4 +30,8 @@ interface WardsDAO : CrudRepository<WardEntity, Int> {
             "                                           group by wards.id\n" +
             "                                       ) as s1)", nativeQuery = true)
     fun getWardsWhenTakenPlacesFewerThenAvgD1D2(id1: Int, id2: Int): List<WardEntity>
+
+    // Not working
+    @Procedure("get_wards_metrics")
+    fun getWardsMetrics(ward_id: Int): List<Int?>
 }

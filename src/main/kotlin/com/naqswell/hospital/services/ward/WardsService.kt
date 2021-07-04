@@ -21,6 +21,8 @@ interface WardsService {
     fun moveFromWardToWard(id1: Int, id2: Int)
 
     fun getWardsWhenTakenPlacesFewerThenAvgD1D2(id1: Int, id2: Int): List<WardEntity>
+
+    fun getWardsMetrics(id: Int): List<Int?>
 }
 
 //Эта сущность представляет собой тело json-запроса - data class с тремя полями и валидацией

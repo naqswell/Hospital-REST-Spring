@@ -60,4 +60,10 @@ class WardsController(private val wardsService: WardsService) {
                                                 @PathVariable("id2") id2: Int): List<WardEntity> {
         return wardsService.getWardsWhenTakenPlacesFewerThenAvgD1D2(id1, id2)
     }
+
+    // Not working
+    @GetMapping("/getWardsMetrics/{id}")
+    fun getWardsMetrics(@PathVariable("id") id: Int): List<Int?> {
+        return wardsService.getWardsMetrics(id)
+    }
 }
