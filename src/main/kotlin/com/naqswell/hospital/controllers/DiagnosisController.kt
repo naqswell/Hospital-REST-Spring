@@ -11,10 +11,10 @@ import javax.validation.Valid
 @RequestMapping("/diagnosis", produces = [MediaType.APPLICATION_JSON_VALUE])
 class DiagnosisController(private val diagnosisService: DiagnosisService) {
 
-    @GetMapping
+    @GetMapping("/getAll")
     fun findAll() = diagnosisService.findAll()
 
-    @GetMapping("/{id}")
+    @GetMapping("/getById/{id}")
     fun findById(@PathVariable("id") id: Int): DiagnosisEntity {
         return diagnosisService.findById(id)
     }

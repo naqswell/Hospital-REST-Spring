@@ -28,14 +28,14 @@ class DiagnosisEntity(
 
 ) : BaseDiagnosisEntity(name) {
 
-    fun addPeoples(block: DiagnosisEntity.() -> PeopleEntity) {
-        peoples.add(block())
-    }
-
-    fun setPeoples(block: DiagnosisEntity.() -> MutableSet<PeopleEntity>) {
-        peoples.clear()
-        peoples.addAll(block())
-    }
+//    fun addPeoples(block: DiagnosisEntity.() -> PeopleEntity) {
+//        peoples.add(block())
+//    }
+//
+//    fun setPeoples(block: DiagnosisEntity.() -> MutableSet<PeopleEntity>) {
+//        peoples.clear()
+//        peoples.addAll(block())
+//    }
 
     fun copy(): DiagnosisEntity =
             DiagnosisEntity(

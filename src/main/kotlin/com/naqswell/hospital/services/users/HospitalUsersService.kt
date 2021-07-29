@@ -1,17 +1,17 @@
 package com.naqswell.hospital.services.users
 
 import com.naqswell.hospital.models.users.RoleEntity
-import com.naqswell.hospital.models.users.UsersEntity
+import com.naqswell.hospital.models.users.HospitalUsersEntity
 import org.jetbrains.annotations.NotNull
 
-interface UsersService {
-    fun findAll(): List<UsersEntity>
+interface HospitalUsersService {
+    fun findAll(): List<HospitalUsersEntity>
 
-    fun findById(id: Int): UsersEntity
+    fun findById(id: Int): HospitalUsersEntity
 
-    fun createRequest(request: SaveUsersRequestFkByID)
+    fun createRequest(request: SaveUsersRequestFkByID): Boolean
 
-    fun createRequest(request: SaveUsersRequestFkByEntities)
+    fun createRequest(request: SaveUsersRequestFkByEntities): Boolean
 
     fun update(id: Int, request: SaveUsersRequestFkByID)
 
@@ -30,7 +30,7 @@ data class SaveUsersRequestFkByID(
         val hash: String?,
 
         @get:NotNull
-        val fkRole: Int?,
+        var roles: MutableList<Int>?
 )
 
 data class SaveUsersRequestFkByEntities(
@@ -41,6 +41,5 @@ data class SaveUsersRequestFkByEntities(
         val hash: String?,
 
         @get:NotNull
-        val fkRole: RoleEntity?,
-
+        var roles: MutableList<RoleEntity>?
 )

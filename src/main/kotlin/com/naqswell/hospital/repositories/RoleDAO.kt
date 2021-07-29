@@ -5,5 +5,5 @@ import org.springframework.data.repository.CrudRepository
 
 interface RoleDAO : CrudRepository<RoleEntity, Int> {
 
-    fun findByOrderByName(): List<RoleEntity>
+    fun findByName(name: String): RoleEntity?
 }

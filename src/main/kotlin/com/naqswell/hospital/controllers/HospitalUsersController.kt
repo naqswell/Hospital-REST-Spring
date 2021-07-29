@@ -1,35 +1,35 @@
 package com.naqswell.hospital.controllers
 
-import com.naqswell.hospital.models.users.UsersEntity
+import com.naqswell.hospital.models.users.HospitalUsersEntity
 import com.naqswell.hospital.services.users.SaveUsersRequestFkByEntities
 import com.naqswell.hospital.services.users.SaveUsersRequestFkByID
-import com.naqswell.hospital.services.users.UsersService
+import com.naqswell.hospital.services.users.HospitalUsersService
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.*
 import javax.validation.Valid
 
 @RestController
 @RequestMapping("/users", produces = [MediaType.APPLICATION_JSON_VALUE])
-class UsersController(private val usersService: UsersService) {
+class HospitalUsersController(private val hospitalUsersService: HospitalUsersService) {
 
-    @GetMapping("")
-    fun findAll() = usersService.findAll()
+    @GetMapping("/getAll")
+    fun findAll() = hospitalUsersService.findAll()
 
-    @GetMapping("/{id}")
-    fun findById(@PathVariable("id") id: Int): UsersEntity {
-        return usersService.findById(id)
+    @GetMapping("/getById/{id}")
+    fun findById(@PathVariable("id") id: Int): HospitalUsersEntity {
+        return hospitalUsersService.findById(id)
     }
 
     @PostMapping("/create/byId")
     fun create(@Valid @RequestBody requestFkByID: SaveUsersRequestFkByID): StatusResponse {
-        usersService.createRequest(requestFkByID)
+        hospitalUsersService.createRequest(requestFkByID)
         return StatusResponse("User created requestFkByID")
     }
 
 
     @PostMapping("/create/byEntity")
     fun create(@Valid @RequestBody requestFkByEntities: SaveUsersRequestFkByEntities): StatusResponse {
-        usersService.createRequest(requestFkByEntities)
+        hospitalUsersService.createRequest(requestFkByEntities)
         return StatusResponse("User created requestFkByEntities")
     }
 
@@ -38,7 +38,7 @@ class UsersController(private val usersService: UsersService) {
             @PathVariable("id") id: Int,
             @Valid @RequestBody requestFkByID: SaveUsersRequestFkByID
     ): StatusResponse {
-        usersService.update(id, requestFkByID)
+        hospitalUsersService.update(id, requestFkByID)
         return StatusResponse("User with id=$id updated by id")
     }
 
@@ -47,14 +47,14 @@ class UsersController(private val usersService: UsersService) {
             @PathVariable("id") id: Int,
             @Valid @RequestBody requestFkByEntities: SaveUsersRequestFkByEntities
     ): StatusResponse {
-        usersService.update(id, requestFkByEntities)
+        hospitalUsersService.update(id, requestFkByEntities)
         return StatusResponse("User with id=$id updated by entities")
     }
 
     @DeleteMapping("/delete/{id}")
     fun delete(@PathVariable("id") id: Int
     ): StatusResponse {
-        usersService.delete(id)
+        hospitalUsersService.delete(id)
         return StatusResponse(("User with id=$id deleted"))
     }
 

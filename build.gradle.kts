@@ -35,7 +35,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-rest")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.springframework.boot:spring-boot-starter-validation")
-	implementation("org.springframework.boot:spring-boot-starter-security:2.2.5.RELEASE")
+	implementation("org.springframework.boot:spring-boot-starter-security")
 
 //	ужен для рефлексии на Kotlin, которая уже поддерживается в
 //	Spring Boot и широко используется для инициализации классов.

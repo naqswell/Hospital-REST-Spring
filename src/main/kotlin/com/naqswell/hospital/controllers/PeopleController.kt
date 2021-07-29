@@ -12,10 +12,10 @@ import javax.validation.Valid
 @RequestMapping("/people", produces = [MediaType.APPLICATION_JSON_VALUE])
 class PeopleController(private val peopleService: PeopleService) {
 
-    @GetMapping("")
+    @GetMapping("/getAll")
     fun findAll() = peopleService.findAll()
 
-    @GetMapping("/{id}")
+    @GetMapping("/getById/{id}")
     fun findById(@PathVariable("id") id: Int): PeopleEntity {
         return peopleService.findById(id)
     }
@@ -33,7 +33,7 @@ class PeopleController(private val peopleService: PeopleService) {
         return StatusResponse("People created requestFkByEntities")
     }
 
-    @PutMapping("update/byId/{id}")
+    @PutMapping("/update/byId/{id}")
     fun update(
             @PathVariable("id") id: Int,
             @Valid @RequestBody requestFkByID: SavePeopleRequestFkByID
@@ -42,7 +42,7 @@ class PeopleController(private val peopleService: PeopleService) {
         return StatusResponse("People with id=$id updated by id")
     }
 
-    @PutMapping("update/byEntities/{id}")
+    @PutMapping("/update/byEntities/{id}")
     fun update(
             @PathVariable("id") id: Int,
             @Valid @RequestBody requestFkByEntities: SavePeopleRequestFkByEntities
