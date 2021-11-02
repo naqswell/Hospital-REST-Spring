@@ -15,6 +15,7 @@ class SecurityConfig(
         private val usersDetailService: HospitalUserServiceImplHospital,
         private val bCryptPasswordEncoder: BCryptPasswordEncoder
 
+
 ) : WebSecurityConfigurerAdapter() {
 
     override fun configure(http: HttpSecurity) {
