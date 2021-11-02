@@ -32,10 +32,10 @@ class SecurityConfig(
                 .antMatchers("/people/getById/**").hasRole("USER")
 
                 .antMatchers("/diagnosis/**").hasRole("ADMIN")
-                .antMatchers("/wards/**").hasRole("ADMIN")
+//                .antMatchers("/wards/**").hasRole("USER")
                 .antMatchers("/users/**").hasRole("ADMIN")
                 .antMatchers("/people/**").hasRole("ADMIN")
-                .anyRequest().authenticated()
+//                .anyRequest().authenticated()
                 .and()
                 .httpBasic()
     }
@@ -46,6 +46,7 @@ class SecurityConfig(
         auth
                 .userDetailsService(usersDetailService)
                 .passwordEncoder(bCryptPasswordEncoder)
+
     }
 
 }

@@ -11,7 +11,7 @@ import javax.validation.Valid
 @RequestMapping("/wards", produces = [MediaType.APPLICATION_JSON_VALUE])
 class WardsController(private val wardsService: WardsService) {
 
-    @GetMapping("/getAll")
+    @GetMapping("/")
     fun findAll() = wardsService.findAll()
 
     @GetMapping("/getById/{id}")
